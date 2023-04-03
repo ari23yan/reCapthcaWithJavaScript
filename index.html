@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="GenerateCaptcha()">
+    <input type="text" id="txtCompare" />  
+    <input type="text" id="txtCaptcha" style="text-align: center; border: none; font-weight: bold; font-size: 20px; font-family: Modern" />  
+    <input type="button" id="btnrefresh" value="بازیابی" onclick="GenerateCaptcha();" />  
+    <input id="btnValid" type="button" value="بررسی" onclick="alert(ValidCaptcha());" />  
+
+      <script type="text/javascript">
+         function GenerateCaptcha() {
+             var captchaCode = randomNumber = Math.floor(Math.random() * 9000) + 1000;
+             document.getElementById("txtCaptcha").value = captchaCode
+         }
+         function ValidCaptcha() {
+             var str1 = removeSpaces(document.getElementById('txtCaptcha').value);
+             var str2 = removeSpaces(document.getElementById('txtCompare').value);
+
+             if (str1 == str2) return "متن وارد شده صحیح میباشد";
+             return "متن وارد شده اشتباه است";
+         }
+         function removeSpaces(string) {
+             return string.split(' ').join('');
+         }
+    </script>
+</body>
+</html>
